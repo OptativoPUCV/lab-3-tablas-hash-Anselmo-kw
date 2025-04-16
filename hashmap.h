@@ -12,9 +12,9 @@
 
 typedef struct HashMap HashMap;
 
-typedef struct Pair {
+typedef struct Pair { //Es como mi tupla
      char * key;
-     void * value;
+     void * value; //Es como el dato supongo
 } Pair;
 
 HashMap * createMap(long capacity);
