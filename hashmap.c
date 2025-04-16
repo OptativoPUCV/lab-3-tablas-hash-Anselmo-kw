@@ -53,6 +53,29 @@ void enlarge(HashMap * map) {
 
 HashMap * createMap(long capacity) {
 
+    //Creo y reservo memoria para el mapa en sí
+    HashMap * mapa = (HashMap*) malloc(sizeof(HashMap));
+    if(mapa == NULL) return NULL; 
+
+    //Luego reservo memoria para cada bucket
+    mapa->buckets = (Pair*) malloc(sizeof(Pair) * capacity); //resevamos para toda la capacidad;
+    if(mapa->buckets == NULL)
+    {
+        free(mapa); //liberamos la memoria del mapa si no se pudo resevar memoria para los buckets
+        return NULL;
+    }
+
+    //El readme dice que hay que inicializar los buckets en NULL
+    for(long i = 0 ; i < capacity ; i++)
+    {
+        mapa->buckets[i] = NULL;
+    }
+
+    //Inicializamos los demás campos
+    mapa->capacity = capacity;
+    mapa->size = 0;
+    mapa->current = 1;
+
     return NULL;
 }
 

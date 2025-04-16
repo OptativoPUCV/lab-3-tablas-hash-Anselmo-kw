@@ -1,0 +1,15 @@
+Wed, Apr 16, 2025  8:32:54 AM: 
+ hashmap.c | 23 +++++++++++++++++++++++
+ 1 file changed, 23 insertions(+)
+Compilation failed
+In file included from test.c:4:
+hashmap.c: In function 'createMap':
+hashmap.c:61:19: error: assignment to 'Pair **' from incompatible pointer type 'Pair *' [-Werror=incompatible-pointer-types]
+   61 |     mapa->buckets = (Pair*) malloc(sizeof(Pair) * capacity); //resevamos para toda la capacidad;
+      |                   ^
+test.c: At top level:
+test.c:8:8: error: '_strdup' redeclared without dllimport attribute: previous dllimport ignored [-Werror=attributes]
+    8 | char * _strdup(const char * str) {
+      |        ^~~~~~~
+cc1.exe: all warnings being treated as errors
+eeef3b7
