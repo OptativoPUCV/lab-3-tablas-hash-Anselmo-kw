@@ -57,8 +57,8 @@ HashMap * createMap(long capacity) {
     HashMap * mapa = (HashMap*) malloc(sizeof(HashMap));
     if(mapa == NULL) return NULL; 
 
-    //Luego reservo memoria para cada bucket
-    mapa->buckets = (Pair*) malloc(sizeof(Pair) * capacity); //resevamos para toda la capacidad;
+    //Luego reservo memoria para cada bucket // Pair como es doble puntero se pone como un puntero simple aquí
+    mapa->buckets = (Pair**) malloc(sizeof(Pair*) * capacity); //resevamos para toda la capacidad;
     if(mapa->buckets == NULL)
     {
         free(mapa); //liberamos la memoria del mapa si no se pudo resevar memoria para los buckets
