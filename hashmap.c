@@ -40,8 +40,32 @@ int is_equal(void* key1, void* key2){
 
 
 void insertMap(HashMap * map, char * key, void * value) {
+    //Funcion Hash y da pos
+    long pos = hash(key, map->capacity);
 
+    //Creamos tupla
+    Pair * nuevaTupla = createPair(key, value);
 
+    //Devo ver si antes en esa posicion hay otro dato
+    if(map->buckets[pos] == NULL || map->buckets[pos] == NULL) //Si en esa posicion no hya nada, lo agrego
+    {
+        map->buckets[pos] = nuevaTupla;
+    }
+    else //Si hay colision, vamos a movernos 1 a la derecha hasta encntrar un espacio
+    {   
+        long posInicial = pos;
+        while(map->buckets[pos] != NULL && map->buckets[pos] != NULL)
+        {
+            //if(pos > map->capacity) return;/ esto puede dar error ya que si empiezo desde al medio, puede
+            //haber espacio vacios al inicio
+            pos = (pos + 1) % map->capacity;//Aquí me aseguro que esté dentro del rango
+            if(pos == posInicial) return;//Significa que volvemos a la posicion que nos dieron, osea está lleno
+        }
+
+        map->buckets[pos] = nuevaTupla;
+    }
+
+    map->size++;
 }
 
 void enlarge(HashMap * map) {
