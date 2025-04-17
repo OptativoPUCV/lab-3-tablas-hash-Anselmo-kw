@@ -94,7 +94,7 @@ HashMap * createMap(long capacity) {
     //Inicializamos los demás campos
     mapa->capacity = capacity;
     mapa->size = 0;
-    mapa->current = 1;
+    mapa->current = -1;
 
     return ;
 }
