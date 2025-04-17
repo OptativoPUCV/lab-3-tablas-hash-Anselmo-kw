@@ -100,7 +100,21 @@ HashMap * createMap(long capacity) {
 }
 
 void eraseMap(HashMap * map,  char * key) {    
+    long pos = hash(key,map->capacity);
+    long posInicial = pos;
 
+    while(map->buckets[pos] != NULL)
+    {
+        if(map->buckets[pos]->key != NULL && (strcmp(map->buckets[pos]->key, key) == 0))
+        {
+            map->buckets[pos]->key = NULL;
+            map->size--;
+            return;
+        }
+
+        pos = (pos + 1) % map->capacity;
+        if (pos == posInicial) return; //Significa que volvio al inicio el ciclo
+    }
 
 }
 
