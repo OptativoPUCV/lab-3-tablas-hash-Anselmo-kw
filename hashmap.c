@@ -42,10 +42,20 @@ int is_equal(void* key1, void* key2){
 void insertMap(HashMap * map, char * key, void * value) {
     //Funcion Hash y da pos
     long pos = hash(key, map->capacity);
+    //if((map->size/map->capacity) >= 0.7);
+    long posInicial = pos;
 
-    //Creamos tupla
-    Pair * nuevaTupla = createPair(key, value);
+    //Mejor estructura que la que tenia creo
+    while(map->buckets[pos] != NULL)
+    {
+        if(map->buckets[pos]->key != NULL && strcmp(map->buckets[pos]->key, key) == 0)
+            return;
 
+        pos = (pos + 1) % map->capacity;
+        if (pos == posInicial); //Significa que volvio a incial el ciclo
+
+    }
+    /*
     //Devo ver si antes en esa posicion hay otro dato
     if(map->buckets[pos] == NULL || map->buckets[pos] == NULL) //Si en esa posicion no hya nada, lo agrego
     {
@@ -63,8 +73,14 @@ void insertMap(HashMap * map, char * key, void * value) {
         }
 
         map->buckets[pos] = nuevaTupla;
-    }
+    }*/
 
+
+
+    //Creamos tupla y actualizamos el mapa
+    Pair * nuevaTupla = createPair(key, value);
+    map->buckets[pos] = nuevaTupla;
+    map->current = pos;
     map->size++;
 }
 
