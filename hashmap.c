@@ -51,6 +51,7 @@ void insertMap(HashMap * map, char * key, void * value) {
         if(map->buckets[pos]->key != NULL && strcmp(map->buckets[pos]->key, key) == 0)
             return;
 
+        //Se suma 1 para ir buscando otra pos donde poder insertar
         pos = (pos + 1) % map->capacity;
         if (pos == posInicial); //Significa que volvio a incial el ciclo
 
