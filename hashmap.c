@@ -66,8 +66,34 @@ void insertMap(HashMap * map, char * key, void * value) {
 
 void enlarge(HashMap * map) {
     enlarge_called = 1; //no borrar (testing purposes)
+    Pair ** antiguoArreglo = map->buckets; //es el arreglo en si
+    long capacidadAntigua = map->capacity;
 
+    //Duplicamos la capacidad y redimencionamos el arreglo (map->bucket)
+    map->capacity *=2;
+    map->buckets = (Pair**) realloc((Pair*)* map->buckets, (size_t) map->capacity);
 
+    if(map->buckets == NULL) //No c pudo redimencionar el arreglo
+    {
+        map->buckets = antiguoArreglo;
+        map->capacity = capacidadAntigua;
+        return;
+    }
+
+    //Inicializamos todo de nuevo
+    for(int i = 0 ; i < map->capacity ; i++)
+    {
+        map->buckets[i] = NULL;
+    }
+    map->size = 0;
+
+    for(int k = 0 ; k < capacidadAntigua ; k++)
+    {
+        if((antiguoArreglo[k] != NULL) && (antiguoArreglo[k]->key != NULL))
+        insertMap(map, antiguoArreglo[k]->key, antiguoArreglo[k]->value);
+    }
+
+    free(antiguoArreglo);
 }
 
 
@@ -164,7 +190,7 @@ Pair * firstMap(HashMap * map) {
 
 Pair * nextMap(HashMap * map) {
 
-    long * actual = (map->current) + 1;
+    long * actual = (map->current) + 1; //Mejor inicializar en 1 más de inmediato para evitar errores
 
     for(long k = actual ; k < map->capacity ; k++)
     {
