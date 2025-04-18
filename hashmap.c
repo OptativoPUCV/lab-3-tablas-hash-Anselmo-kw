@@ -42,7 +42,8 @@ int is_equal(void* key1, void* key2){
 void insertMap(HashMap * map, char * key, void * value) {
     //Funcion Hash y da pos
     long pos = hash(key, map->capacity);
-    //if((map->size/map->capacity) >= 0.7);
+    if((map->size/map->capacity) >= 0.7)
+        enlarge(map);
     long posInicial = pos;
 
     //Mejor estructura que la que tenia creo
