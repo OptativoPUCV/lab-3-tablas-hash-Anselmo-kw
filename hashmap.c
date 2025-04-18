@@ -171,7 +171,7 @@ Pair * nextMap(HashMap * map) {
         if((map->buckets[k] != NULL) && (map->buckets[k]->key != NULL))
         {
             map->current = k ; //actualizamos el current
-            return map->buckets[k];
+            return map->buckets[k]->value;
         }
     }
 
