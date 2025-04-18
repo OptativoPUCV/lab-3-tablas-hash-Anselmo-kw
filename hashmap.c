@@ -42,7 +42,7 @@ int is_equal(void* key1, void* key2){
 void insertMap(HashMap * map, char * key, void * value) {
     //Funcion Hash y da pos
     long pos = hash(key, map->capacity);
-    if((map->size/map->capacity) >= 0.7)
+    if(((float)map->size/map->capacity) >= 0.7) //deve ser al menos 1 float
         enlarge(map);
     long posInicial = pos;
 
@@ -54,7 +54,7 @@ void insertMap(HashMap * map, char * key, void * value) {
 
         //Se suma 1 para ir buscando otra pos donde poder insertar
         pos = (pos + 1) % map->capacity;
-        if (pos == posInicial); //Significa que volvio a incial el ciclo
+        if (pos == posInicial) return; //Significa que volvio a incial el ciclo
 
     }
 
@@ -72,7 +72,7 @@ void enlarge(HashMap * map) {
 
     //Duplicamos la capacidad y redimencionamos el arreglo (map->bucket)
     map->capacity *=2;
-    map->buckets = (Pair**) realloc((Pair*)* map->buckets, (size_t) map->capacity);
+    map->buckets = (Pair**) realloc(map->buckets, map->capacity * sizeof(Pair));
 
     if(map->buckets == NULL) //No c pudo redimencionar el arreglo
     {
