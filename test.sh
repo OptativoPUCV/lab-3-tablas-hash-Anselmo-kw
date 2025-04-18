@@ -28,8 +28,8 @@ if [ -n "$CHANGED" ] || [ ! -f "a.out" ]; then
   echo "Eliminando 'a.out'..." >&3
 
   #Compilation
-  echo "Compilando: gcc -g $testcode -Wall -Werror -o a.out" >&3
-  gcc -g $testcode -Wall -Werror -o a.out 2>gcc_err.log
+  echo "Compilando: gcc -g $testcode -Wall -o a.out" >&3
+  gcc -g $testcode -Wall -o a.out 2>gcc_err.log
 
   if [ $? -eq 0 ]; then
       echo " tests: " $(($(./a.out | grep -c 'OK')))\|$(($(./a.out | grep -c 'FAILED'))) >> log

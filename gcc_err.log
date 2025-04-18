@@ -1,4 +1,3 @@
-test.c:8:8: error: '_strdup' redeclared without dllimport attribute: previous dllimport ignored [-Werror=attributes]
+test.c:8:8: warning: '_strdup' redeclared without dllimport attribute: previous dllimport ignored [-Wattributes]
     8 | char * _strdup(const char * str) {
       |        ^~~~~~~
-cc1.exe: all warnings being treated as errors
