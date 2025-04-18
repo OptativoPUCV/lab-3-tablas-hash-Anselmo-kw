@@ -164,7 +164,7 @@ Pair * firstMap(HashMap * map) {
 
 Pair * nextMap(HashMap * map) {
 
-    HashMap * actual = map->current;
+    long * actual = map->current;
 
     for(long k = actual + 1 ; k < map->capacity ; k++)
     {
