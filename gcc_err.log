@@ -1,3 +1,12 @@
+In file included from test.c:4:
+hashmap.c: In function 'nextMap':
+hashmap.c:194:21: warning: initialization of 'long int *' from 'long int' makes pointer from integer without a cast [-Wint-conversion]
+  194 |     long * actual = (map->current) + 1; //Mejor inicializar en 1 más de inmediato para evitar errores
+      |                     ^
+hashmap.c:196:18: warning: initialization of 'long int' from 'long int *' makes integer from pointer without a cast [-Wint-conversion]
+  196 |     for(long k = actual ; k < map->capacity ; k++)
+      |                  ^~~~~~
+test.c: At top level:
 test.c:8:8: warning: '_strdup' redeclared without dllimport attribute: previous dllimport ignored [-Wattributes]
     8 | char * _strdup(const char * str) {
       |        ^~~~~~~

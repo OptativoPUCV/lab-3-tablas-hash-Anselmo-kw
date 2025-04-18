@@ -38,7 +38,6 @@ int is_equal(void* key1, void* key2){
     return 0;
 }
 
-
 void insertMap(HashMap * map, char * key, void * value) {
     //Funcion Hash y da pos
     long pos = hash(key, map->capacity);
@@ -72,7 +71,7 @@ void enlarge(HashMap * map) {
 
     //Duplicamos la capacidad y redimencionamos el arreglo (map->bucket)
     map->capacity *=2;
-    map->buckets = (Pair**) malloc(map->capacity * sizeof(Pair*));
+    map->buckets = (Pair**) malloc(map->capacity * sizeof(Pair*)); //Preguntar porque el realloc me daba error
 
     if(map->buckets == NULL) //No c pudo redimencionar el arreglo
     {
@@ -96,7 +95,6 @@ void enlarge(HashMap * map) {
 
     free(antiguoArreglo);
 }
-
 
 HashMap * createMap(long capacity) {
 
@@ -135,23 +133,6 @@ void eraseMap(HashMap * map,  char * key) {
         parBuscar->key = NULL;
         map->size--;
     }
-
-    /* esto es lo mismo que hace el searchMap u_u
-    long pos = hash(key,map->capacity);
-    long posInicial = pos;
-
-    while(map->buckets[pos] != NULL)
-    {
-        if(map->buckets[pos]->key != NULL && (strcmp(map->buckets[pos]->key, key) == 0))
-        {
-            map->buckets[pos]->key = NULL;
-            map->size--;
-            return;
-        }
-
-        pos = (pos + 1) % map->capacity;
-        if (pos == posInicial) return; //Significa que volvio al inicio el ciclo
-    }*/
 
 }
 
