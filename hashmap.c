@@ -164,14 +164,14 @@ Pair * firstMap(HashMap * map) {
 
 Pair * nextMap(HashMap * map) {
 
-    long * actual = map->current;
+    long * actual = (map->current) + 1;
 
-    for(long k = actual + 1 ; k < map->capacity ; k++)
+    for(long k = actual ; k < map->capacity ; k++)
     {
         if((map->buckets[k] != NULL) && (map->buckets[k]->key != NULL))
         {
             map->current = k ; //actualizamos el current
-            return map->buckets[k]->value;
+            return map->buckets[k];
         }
     }
 
