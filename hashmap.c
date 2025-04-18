@@ -72,7 +72,7 @@ void enlarge(HashMap * map) {
 
     //Duplicamos la capacidad y redimencionamos el arreglo (map->bucket)
     map->capacity *=2;
-    map->buckets = (Pair**) realloc(map->buckets, map->capacity * sizeof(Pair));
+    map->buckets = (Pair**) malloc(map->capacity * sizeof(Pair*));
 
     if(map->buckets == NULL) //No c pudo redimencionar el arreglo
     {
