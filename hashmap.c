@@ -155,7 +155,7 @@ Pair * firstMap(HashMap * map) {
     {
         if((map->buckets[k] != NULL) && (map->buckets[k]->key != NULL))
         {   
-            map->current = map->buckets[k];
+            map->current = k; //se actualiza la pos
             return map->buckets[k];
         }
     }
