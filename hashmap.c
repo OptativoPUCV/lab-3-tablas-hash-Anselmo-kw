@@ -99,7 +99,17 @@ HashMap * createMap(long capacity) {
     return mapa;
 }
 
-void eraseMap(HashMap * map,  char * key) {    
+void eraseMap(HashMap * map,  char * key) {   
+    //Como no se me ocurrio antes u_u
+    Pair * parBuscar = searchMap(map, key);
+
+    if(parBuscar != NULL)
+    {
+        parBuscar->key = NULL;
+        map->size--;
+    }
+
+    /* esto es lo mismo que hace el searchMap u_u
     long pos = hash(key,map->capacity);
     long posInicial = pos;
 
@@ -114,7 +124,7 @@ void eraseMap(HashMap * map,  char * key) {
 
         pos = (pos + 1) % map->capacity;
         if (pos == posInicial) return; //Significa que volvio al inicio el ciclo
-    }
+    }*/
 
 }
 
